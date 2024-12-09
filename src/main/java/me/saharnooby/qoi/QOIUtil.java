@@ -1,7 +1,5 @@
 package me.saharnooby.qoi;
 
-import lombok.NonNull;
-
 import java.io.*;
 
 /**
@@ -20,7 +18,7 @@ public final class QOIUtil {
 	 * @return QOI image.
 	 * @throws IllegalArgumentException If any arguments are invalid.
 	 */
-	public static QOIImage createFromPixelData(byte @NonNull [] pixelData, int width, int height) {
+	public static QOIImage createFromPixelData(byte [] pixelData, int width, int height) {
 		return createFromPixelData(pixelData, width, height, pixelData.length / width / height);
 	}
 
@@ -34,7 +32,7 @@ public final class QOIUtil {
 	 * @return QOI image.
 	 * @throws IllegalArgumentException If any arguments are invalid.
 	 */
-	public static QOIImage createFromPixelData(byte @NonNull [] pixelData, int width, int height, int channels) {
+	public static QOIImage createFromPixelData(byte [] pixelData, int width, int height, int channels) {
 		return createFromPixelData(pixelData, width, height, channels, QOIColorSpace.SRGB);
 	}
 
@@ -49,7 +47,7 @@ public final class QOIUtil {
 	 * @return QOI image.
 	 * @throws IllegalArgumentException If any arguments are invalid.
 	 */
-	public static QOIImage createFromPixelData(byte @NonNull [] pixelData, int width, int height, int channels, @NonNull QOIColorSpace colorSpace) {
+	public static QOIImage createFromPixelData(byte [] pixelData, int width, int height, int channels, QOIColorSpace colorSpace) {
 		if (width < 1) {
 			throw new IllegalArgumentException("Width must be positive");
 		}
@@ -76,7 +74,7 @@ public final class QOIUtil {
 	 * @throws InvalidQOIStreamException If provided data does not represent a valid QOI image.
 	 * @throws IOException On any IO error.
 	 */
-	public static QOIImage readImage(@NonNull InputStream in) throws IOException {
+	public static QOIImage readImage(InputStream in) throws IOException {
 		return readImage(in, 0);
 	}
 
@@ -88,7 +86,7 @@ public final class QOIUtil {
 	 * @throws InvalidQOIStreamException If provided data does not represent a valid QOI image.
 	 * @throws IOException On any IO error.
 	 */
-	public static QOIImage readImage(@NonNull InputStream in, int channels) throws IOException {
+	public static QOIImage readImage(InputStream in, int channels) throws IOException {
 		return QOIDecoder.decode(in, channels);
 	}
 
@@ -99,7 +97,7 @@ public final class QOIUtil {
 	 * @throws InvalidQOIStreamException If provided file does not represent a valid QOI image.
 	 * @throws IOException On any IO error.
 	 */
-	public static QOIImage readFile(@NonNull File file) throws IOException {
+	public static QOIImage readFile(File file) throws IOException {
 		return readFile(file, 0);
 	}
 
@@ -111,7 +109,7 @@ public final class QOIUtil {
 	 * @throws InvalidQOIStreamException If provided file does not represent a valid QOI image.
 	 * @throws IOException On any IO error.
 	 */
-	public static QOIImage readFile(@NonNull File file, int channels) throws IOException {
+	public static QOIImage readFile(File file, int channels) throws IOException {
 		try (InputStream in = new FileInputStream(file)) {
 			return readImage(in, channels);
 		}
@@ -123,7 +121,7 @@ public final class QOIUtil {
 	 * @param out Output stream.
 	 * @throws IOException On any IO error.
 	 */
-	public static void writeImage(@NonNull QOIImage image, @NonNull OutputStream out) throws IOException {
+	public static void writeImage(QOIImage image, OutputStream out) throws IOException {
 		QOIEncoder.encode(image, out);
 	}
 
@@ -133,7 +131,7 @@ public final class QOIUtil {
 	 * @param file File.
 	 * @throws IOException On any IO error.
 	 */
-	public static void writeImage(@NonNull QOIImage image, @NonNull File file) throws IOException {
+	public static void writeImage(QOIImage image, File file) throws IOException {
 		try (OutputStream out = new FileOutputStream(file)) {
 			writeImage(image, out);
 		}
@@ -145,7 +143,7 @@ public final class QOIUtil {
 	 * @param image Source image.
 	 * @return Converted image.
 	 */
-	public static QOIImage removeAlpha(@NonNull QOIImage image) {
+	public static QOIImage removeAlpha(QOIImage image) {
 		if (image.getChannels() != 4) {
 			return image;
 		}
@@ -172,7 +170,7 @@ public final class QOIUtil {
 	 * @param alpha Alpha channel value. Bits higher than 8 will be ignored.
 	 * @return Converted image.
 	 */
-	public static QOIImage addAlpha(@NonNull QOIImage image, int alpha) {
+	public static QOIImage addAlpha(QOIImage image, int alpha) {
 		if (image.getChannels() != 3) {
 			return image;
 		}

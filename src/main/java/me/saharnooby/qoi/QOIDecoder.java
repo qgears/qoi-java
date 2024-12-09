@@ -1,7 +1,5 @@
 package me.saharnooby.qoi;
 
-import lombok.NonNull;
-
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -25,7 +23,7 @@ public final class QOIDecoder {
 	 * @throws InvalidQOIStreamException If provided data does not represent a valid QOI image.
 	 * @throws IOException On any IO error.
 	 */
-	public static QOIImage decode(@NonNull InputStream inputStream, int channels) throws IOException {
+	public static QOIImage decode(InputStream inputStream, int channels) throws IOException {
 		return decode(inputStream, channels, false);
 	}
 
@@ -42,7 +40,7 @@ public final class QOIDecoder {
 	 * @throws InvalidQOIStreamException If provided data does not represent a valid QOI image.
 	 * @throws IOException On any IO error.
 	 */
-	public static QOIImage decode(@NonNull InputStream inputStream, int channels, boolean doNotTouchDataAfterImage) throws IOException {
+	public static QOIImage decode(InputStream inputStream, int channels, boolean doNotTouchDataAfterImage) throws IOException {
 		if (channels != 0 && channels != 3 && channels != 4) {
 			throw new IllegalArgumentException("Invalid channel count, must be 0, 3 or 4");
 		}
@@ -95,7 +93,7 @@ public final class QOIDecoder {
 	}
 
 	// Read into 3-channel RGB buffer
-	private static byte[] read3(@NonNull Input in, int width, int height) throws IOException {
+	private static byte[] read3(Input in, int width, int height) throws IOException {
 		// Check for overflow on big images
 		int pixelDataLength = Math.multiplyExact(Math.multiplyExact(width, height), 3);
 
@@ -176,7 +174,7 @@ public final class QOIDecoder {
 	}
 
 	// Read into 4-channel RGBA buffer
-	private static byte[] read4(@NonNull Input in, int width, int height) throws IOException {
+	private static byte[] read4(Input in, int width, int height) throws IOException {
 		// Check for overflow on big images
 		int pixelDataLength = Math.multiplyExact(Math.multiplyExact(width, height), 4);
 
@@ -267,7 +265,7 @@ public final class QOIDecoder {
 		private int position;
 		private int read;
 
-		private Input(@NonNull InputStream in, boolean useBuffer) {
+		private Input(InputStream in, boolean useBuffer) {
 			this.in = in;
 			this.buffer = useBuffer ? new byte[BUFFER_SIZE] : null;
 		}

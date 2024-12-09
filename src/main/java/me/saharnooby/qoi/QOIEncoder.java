@@ -1,6 +1,5 @@
 package me.saharnooby.qoi;
 
-import lombok.NonNull;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -19,7 +18,7 @@ public final class QOIEncoder {
 	 * @param outputStream Output stream.
 	 * @throws IOException On any IO error.
 	 */
-	public static void encode(@NonNull QOIImage image, @NonNull OutputStream outputStream) throws IOException {
+	public static void encode(QOIImage image, OutputStream outputStream) throws IOException {
 		int channels = image.getChannels();
 
 		byte[] pixelData = image.getPixelData();
@@ -48,7 +47,7 @@ public final class QOIEncoder {
 	}
 
 	// Encode 3-channel RGB buffer
-	private static void encode3(@NonNull Output out, byte @NonNull [] pixelData) throws IOException {
+	private static void encode3(Output out, byte [] pixelData) throws IOException {
 		byte[] index = createHashTableRGBA();
 
 		int run = 0;
@@ -123,7 +122,7 @@ public final class QOIEncoder {
 	}
 
 	// Encode 4-channel RGBA buffer
-	private static void encode4(@NonNull Output out, byte @NonNull [] pixelData) throws IOException {
+	private static void encode4(Output out, byte [] pixelData) throws IOException {
 		byte[] index = createHashTableRGBA();
 
 		int run = 0;
@@ -239,7 +238,7 @@ public final class QOIEncoder {
 		private final byte[] buffer = new byte[BUFFER_SIZE];
 		private int written;
 
-		private Output(@NonNull OutputStream out) {
+		private Output(OutputStream out) {
 			this.out = out;
 		}
 
@@ -278,7 +277,7 @@ public final class QOIEncoder {
 			this.written += 4;
 		}
 
-		public void writeColorSpace(@NonNull QOIColorSpace colorSpace) throws IOException {
+		public void writeColorSpace(QOIColorSpace colorSpace) throws IOException {
 			switch (colorSpace) {
 				case SRGB:
 					write(QOI_SRGB);

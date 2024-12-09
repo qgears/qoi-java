@@ -1,7 +1,5 @@
 package me.saharnooby.qoi;
 
-import lombok.NonNull;
-
 import java.io.IOException;
 
 /**
@@ -9,7 +7,9 @@ import java.io.IOException;
  */
 public final class InvalidQOIStreamException extends IOException {
 
-	InvalidQOIStreamException(@NonNull String message) {
+	private static final long serialVersionUID = 1L;
+
+	InvalidQOIStreamException(String message) {
 		super(message);
 	}
 

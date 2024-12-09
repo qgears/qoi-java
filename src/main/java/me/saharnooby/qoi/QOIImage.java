@@ -1,18 +1,21 @@
 package me.saharnooby.qoi;
 
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 
 /**
  * A bundle of QOI image metadata and raw pixel data.
  * Use methods in {@link QOIUtil} to create instances of this class.
  */
-@Data
-@RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 public final class QOIImage {
 
+	
+	public QOIImage(int width, int height, int channels, QOIColorSpace colorSpace, byte[] pixelData) {
+		super();
+		this.width = width;
+		this.height = height;
+		this.channels = channels;
+		this.colorSpace = colorSpace;
+		this.pixelData = pixelData;
+	}
 	/**
 	 * Image width. Positive value.
 	 */
@@ -28,13 +31,26 @@ public final class QOIImage {
 	/**
 	 * Color space of the image.
 	 */
-	@NonNull
 	private final QOIColorSpace colorSpace;
 	/**
 	 * Raw pixel data in the form of [R, G, B, (A,) ...].
 	 * The array has (width * height * channels) elements.
 	 * Alpha is present when channel count is 4.
 	 */
-	private final byte @NonNull [] pixelData;
-
+	private final byte  [] pixelData;
+	public int getChannels() {
+		return channels;
+	}
+	public byte[] getPixelData() {
+		return pixelData;
+	}
+	public int getHeight() {
+		return height;
+	}
+	public int getWidth() {
+		return width;
+	}
+	public QOIColorSpace getColorSpace() {
+		return colorSpace;
+	}
 }
