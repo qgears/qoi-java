@@ -2,6 +2,8 @@
 
 # qoi-java
 
+Fork by Q-Gears: remove references to annotations, add metadata for Eclipse IDE.
+
 A pure Java 8 implementation of [Quite OK Image Format](https://github.com/phoboslab/qoi).
 
 This library has no runtime dependencies, including Java AWT. `ImageIO`/`BufferedImage` support is provided using separate module [qoi-java-awt](https://github.com/saharNooby/qoi-java-awt).
