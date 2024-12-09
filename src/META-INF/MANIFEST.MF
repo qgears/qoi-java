@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Java
+Bundle-SymbolicName: qoi.java
+Bundle-Version: 1.0.0.qualifier
+Automatic-Module-Name: qoi.java
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Export-Package: me.saharnooby.qoi
